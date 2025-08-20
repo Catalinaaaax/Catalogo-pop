@@ -1,0 +1,430 @@
+/* Estilos generales para un desplazamiento suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0; /* Elimina el margen por defecto del navegador */
+    background-color: #f9f9f9; /* Fondo base para toda la página, para dar coherencia */
+}
+
+/* Estilos para la barra de navegación (el recuadro) */
+.navbar {
+    display: flex; /* Activa Flexbox para alinear logo y links */
+    justify-content: space-between; /* Empuja el logo a la izquierda y los links a la derecha */
+    align-items: center; /* Centra verticalmente los elementos */
+    background-color: #1B365D; /* Color de fondo solicitado */
+    padding: 10px 30px; /* Espaciado interno para que no esté pegado a los bordes */
+}
+
+/* Estilos para el logo */
+.logo img {
+  height: 50px;
+  width: auto;
+  vertical-align: middle; /* Ayuda a alinear la imagen si hay texto al lado */
+}
+
+/* Contenedor de los enlaces de navegación */
+.nav-links {
+    list-style: none; /* Quita los puntos de la lista (viñetas) */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Coloca los elementos (li) en horizontal */
+}
+
+/* Espaciado entre los elementos del menú */
+.nav-links li {
+    margin-left: 25px; /* Añade espacio a la izquierda de cada item */
+}
+
+/* Estilos para cada enlace del menú */
+.nav-links a {
+    position: relative; /* Necesario para posicionar la línea animada */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: white; /* Color del texto */
+    padding-bottom: 5px; /* Añade un pequeño espacio para la línea de abajo */
+}
+
+/* El pseudo-elemento que crea la línea animada */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Inicia con escala 0 (invisible) */
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #A7C7E7; /* Un color azul claro que combina bien */
+    transform-origin: center; /* La animación se origina desde el centro */
+    transition: transform 0.4s ease-out; /* Transición suave */
+}
+
+/* Al pasar el mouse o si el enlace está activo, la línea se expande */
+.nav-links a:hover::after, .nav-links a.active::after {
+    transform: scaleX(1); /* Expande la línea a su tamaño completo */
+}
+
+/* --- Hero Section con Video --- */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Centra el texto */
+    color: white;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 54, 93, 0.5); /* Capa oscura semitransparente */
+    z-index: -1;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.hero-buttons .btn {
+    padding: 12px 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 50px; /* Botones redondeados */
+    margin: 0 10px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.btn.btn-primary {
+    background-color: #00A99D; /* Un teal más vibrante para mayor contraste y llamada a la acción */
+}
+
+.btn.btn-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Título genérico para secciones */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 700; /* Hacemos la fuente un poco más gruesa (bold) */
+}
+
+/* Estilos para la sección de productos destacados */
+.featured-products {
+    padding: 60px 0; /* Espaciado vertical, el horizontal lo controla el contenedor */
+}
+
+.product-slider-container {
+    max-width: 1200px; /* Ancho máximo del contenedor de tarjetas */
+    margin: 0 auto; /* Centra el grid en la página */
+    position: relative;
+}
+
+.product-slider {
+    display: flex;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    scroll-behavior: smooth; /* Deslizamiento suave que activaremos con JS */
+    gap: 30px; /* Espacio entre las tarjetas */
+    padding: 10px 25px; /* Espacio para que la sombra del hover no se corte y para los botones */
+    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+}
+
+.product-slider::-webkit-scrollbar {
+    display: none; /* Oculta la barra de scroll en Chrome, Safari y Edge */
+}
+
+.product-card {
+    flex: 0 0 270px; /* Cada tarjeta tendrá un ancho fijo de 270px y no se encogerá */
+    background-color: #ffffff; /* Lo cambiamos a blanco para que sea coherente con el otro banner flotante */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Sombra sutil para efecto de profundidad */
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    overflow: hidden; /* Asegura que la imagen no se salga de los bordes redondeados */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el hover */
+    position: relative; /* Necesario para posicionar elementos hijos de forma absoluta */
+}
+
+/* Media query para hacer las tarjetas un poco más pequeñas en móviles */
+@media (max-width: 600px) {
+    .product-card { flex-basis: 240px; }
+}
+
+/* Creamos una capa superpuesta para el efecto oscuro */
+.product-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(27, 54, 93, 0); /* Inicialmente transparente, usando el azul de la marca */
+    transition: background-color 0.4s ease;
+    z-index: 1; /* Se asegura que esté entre la imagen y el texto */
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* Eleva la tarjeta al pasar el mouse */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 0 0 4px #00695C; /* Sombra más pronunciada y un borde de color al seleccionar */
+}
+
+.product-card:hover::after {
+    background-color: rgba(27, 54, 93, 0.7); /* Oscurece la imagen al pasar el mouse */
+}
+
+.product-card:hover img {
+    transform: scale(1.08); /* Efecto de zoom suave en la imagen */
+}
+
+.product-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Proporción cuadrada (como 1080x1080) */
+    object-fit: cover; /* La imagen cubre el espacio sin deformarse */
+    display: block;
+    transition: transform 0.4s ease; /* Transición para el efecto de zoom */
+}
+
+.product-card h3 {
+    position: absolute; /* Posiciona el texto sobre la imagen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Ocupa todo el ancho para centrar el texto */
+    margin: 0;
+    font-size: 1.5em;
+    color: white;
+    z-index: 2; /* Se asegura que el texto esté por encima de la capa oscura */
+    opacity: 0; /* El texto está oculto por defecto */
+    transition: opacity 0.4s ease;
+}
+
+/* Muestra el texto al pasar el mouse */
+.product-card:hover h3 {
+    opacity: 1;
+}
+
+/* Estilos para el banner de beneficios */
+.benefits-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px; /* Aumentamos un poco el espacio entre items */
+    background-color: #ffffff;
+    padding: 50px 40px;
+    /* Efecto flotante */
+    max-width: 1200px; /* Ancho máximo para que no ocupe toda la pantalla */
+    margin: 60px auto; /* Margen vertical para separarlo y 'auto' para centrarlo */
+    border-radius: 15px; /* Bordes redondeados para suavizar */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); /* La sombra que crea el efecto "flotante" */
+}
+
+.benefit-item {
+    text-align: center;
+}
+
+.benefit-item img {
+    height: 45px; /* Tamaño uniforme para los iconos */
+    margin-bottom: 15px;
+}
+
+.benefit-item h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.benefit-item p {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Estilos para la sección de reseñas */
+.reviews-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9; /* Mismo fondo que el body para coherencia */
+    text-align: center;
+}
+
+.reviews-slider-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* Oculta las reseñas que no están en pantalla */
+}
+
+.reviews-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* La animación del deslizamiento */
+}
+
+.review-card {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 40px 50px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.review-stars {
+    color: #FFD700; /* Color dorado para las estrellas */
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.review-card blockquote {
+    font-size: 1.1em;
+    font-style: italic;
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.review-card footer {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #00695C; /* Usamos un color de la marca */
+}
+
+/* Estilos para las flechas de navegación */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #1B365D;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.slider-arrow:hover {
+    background-color: #00695C;
+}
+
+.prev-arrow {
+    left: 15px;
+}
+
+.next-arrow {
+    right: 15px;
+}
+
+/* Estilos para el banner de contacto final */
+.contact-banner {
+    background: linear-gradient(to right, #00695C, #3A1C71); /* Mismo gradiente que el banner de destacados */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-banner-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap; /* Para que se apile en pantallas pequeñas */
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    color: white;
+}
+
+.contact-item h3 {
+    font-size: 1.5em;
+    color: #A7C7E7; /* Color azul claro para resaltar, como en la nav */
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.contact-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent; /* Borde inferior invisible para la animación */
+    transition: border-color 0.3s ease;
+}
+
+.contact-item a:hover {
+    border-bottom-color: #A7C7E7; /* El borde aparece al pasar el mouse, usando el color de resalte */
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Espacio entre los enlaces de redes sociales */
+}
+
+.social-links a {
+    font-size: 1.1em; /* Hacemos la fuente un poco más pequeña para diferenciar */
+}
+
+/* --- Estilos para Animaciones de Scroll (Compartidos) --- */
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: var(--delay, 0s);
+}
+
+[data-animate].fade-in-up {
+    transform: translateY(40px);
+}
+
+[data-animate].fade-in-down {
+    transform: translateY(-40px);
+}
+
+/* Clase que se añade con JS cuando el elemento es visible */
+[data-animate].visible {
+    opacity: 1;
+    transform: translateY(0);
+}
